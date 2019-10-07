@@ -1,0 +1,26 @@
+{
+  "name": "ts-set-utils",
+  "version": "0.1.0",
+  "description": "A collection of Set utilities similar to python's",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest --config jest.config.js --verbose ./test",
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "Javascript",
+    "Typescript",
+    "Set"
+  ],
+  "author": "John Chabot",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "jest-junit": "^8.0.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  }
+}
