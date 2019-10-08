@@ -1,6 +1,6 @@
 # ts-set-utils
 
-This library provides a small set of utility functions to Typescript's and Javascript's `Set` class. The ES6 `Set` has a relatively small api surface and this library fill some common set uses. Python built-in `set` object as used as a guide for some common methods that can be used on sets
+This library provides a small set of utility functions to Typescript's and Javascript's `Set` class. The ES6 `Set` has a relatively small api surface and this library fills some common set use cases. Python built-in `set` class is used as a api template.
 
 # API
 
@@ -11,7 +11,7 @@ This library provides a small set of utility functions to Typescript's and Javas
 function union<T> (...sets: Set<T>[]): Set<T>;
 ```
 
-Performs a union on all sets provided . A union merge two or more sets together. Read more on [wikipedia](https://en.wikipedia.org/wiki/Union_(set_theory))
+Performs a union on all sets provided. A union merge two or more sets together. Read more on [wikipedia](https://en.wikipedia.org/wiki/Union_(set_theory))
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/3/30/Venn0111.svg "Set Union")
 
@@ -32,7 +32,7 @@ console.log(union(set1, set2));
 function unionPair<T1, T2> (a: Set<T1>, b: Set<T2>): Set<T1 | T2>;
 ```
 
-Performs a set union on two sets of different types. This is mostly a utility method of typescript users to mix the set element types
+Performs a union on two sets of different types. This is a utility method of typescript users to mix the set element types
 
 ### Example
 ``` Typescript
@@ -97,7 +97,7 @@ console.log(disjoint(set2, set3))
 function subset<T> (a: Set<T>, b: Set<T>): boolean;
 ```
 
-Determine if set `B` is a subset of set `A`. A set `B` is a subset of `A` if all elements of `B` are present in set `A`. Read more on [wikipedia](https://en.wikipedia.org/wiki/Subset)
+Determine if set `B` is a subset of set `A`. A set `B` is a subset of `A` if all elements of `B` are in set `A`. Read more on [wikipedia](https://en.wikipedia.org/wiki/Subset)
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/b/b0/Venn_A_subset_B.svg "Relative Complement")
 
@@ -125,7 +125,7 @@ console.log(subset(set3, set1));
 function properSubset<T> (a: Set<T>, b: Set<T>): boolean;
 ```
 
-Determine if set `B` is a proper subset of set `A`. A set `B` is a proper subset of `A` if all elements of `B` are present in set `A` and `A` is a large set. Read more on [wikipedia](https://en.wikipedia.org/wiki/Subset)
+Determine if set `B` is a proper subset of set `A`. A set `B` is a proper subset of `A` if all elements of `B` are in set `A` and `A` is a strictly larger. Read more on [wikipedia](https://en.wikipedia.org/wiki/Subset)
 
 ### Example
 
