@@ -2,9 +2,11 @@ import {
   union,
   unionPair,
   intersection,
-  intersect,
+  disjoint,
   difference,
   symmetricDifference,
+  subset,
+  properSubset,
 } from '../src/index';
 
 type numberObject = {
@@ -418,11 +420,11 @@ describe('when performing a set intersection', () => {
   });
 });
 
-describe('when checking if a set intersects and iterable', () => {
+describe('when checking if two sets are disjoint', () => {
   describe('when the set is empty', () => {
-    test('it returns false', () => {
+    test('it returns true', () => {
       const iterable = new Set([1, 2, 3]);
-      expect(intersect(new Set(), iterable)).toBe(false);
+      expect(disjoint(new Set(), iterable)).toBe(true);
     });
   });
 
@@ -430,22 +432,88 @@ describe('when checking if a set intersects and iterable', () => {
     describe('when the iterable is empty', () => {
       test('it returns false', () => {
         const iterable = new Set();
-        expect(intersect(new Set([1, 10, 5]), iterable)).toBe(false);
+        expect(disjoint(new Set([1, 10, 5]), iterable)).toBe(true);
       });
     });
 
     describe('when the iterable has one overlapping element', () => {
-      test('it returns true', () => {
+      test('it returns false', () => {
         const iterable = new Set([1, 2, 3]);
-        expect(intersect(new Set([1, 10, 5]), iterable)).toBe(true);
+        expect(disjoint(new Set([1, 10, 5]), iterable)).toBe(false);
       });
     });
 
     describe('when the iterable has multiple overlapping elements', () => {
-      test('it returns true', () => {
+      test('it returns false', () => {
         const iterable = new Set([1, 2, 3]);
-        expect(intersect(new Set([1, 10, 5, 3]), iterable)).toBe(true);
+        expect(disjoint(new Set([1, 10, 5, 3]), iterable)).toBe(false);
       });
+    });
+  });
+});
+
+describe('when checking a set is a subset of another', () => {
+  describe('when sets are disjoint', () => {
+    test('returns false', () => {
+      const set = new Set([1, 2, 3]);
+      expect(subset(new Set([4, 5]), set)).toBe(false);
+    });
+  });
+
+  describe('when both sets are empty', () => {
+    test('returns true', () => {
+      expect(subset(new Set(), new Set())).toBe(true);
+    });
+  });
+
+  describe('when b is a strict subset', () => {
+    test('returns true', () => {
+      expect(subset(new Set([1, 2, 3]), new Set([1, 2]))).toBe(true);
+    });
+  });
+
+  describe('when b is a equal', () => {
+    test('returns true', () => {
+      expect(subset(new Set([1, 2, 3]), new Set([1, 2, 3]))).toBe(true);
+    });
+  });
+
+  describe('when b partial overlap', () => {
+    test('returns false', () => {
+      expect(subset(new Set([1, 2, 3]), new Set([2, 3, 4]))).toBe(false);
+    });
+  });
+});
+
+describe('when checking a set is a proper subset of another', () => {
+  describe('when sets are disjoint', () => {
+    test('returns false', () => {
+      const set = new Set([1, 2, 3]);
+      expect(properSubset(new Set([4, 5]), set)).toBe(false);
+    });
+  });
+
+  describe('when both sets are empty', () => {
+    test('returns false', () => {
+      expect(properSubset(new Set(), new Set())).toBe(false);
+    });
+  });
+
+  describe('when b is a strict subset', () => {
+    test('returns true', () => {
+      expect(properSubset(new Set([1, 2, 3]), new Set([1, 2]))).toBe(true);
+    });
+  });
+
+  describe('when b is a equal', () => {
+    test('returns false', () => {
+      expect(properSubset(new Set([1, 2, 3]), new Set([1, 2, 3]))).toBe(false);
+    });
+  });
+
+  describe('when b partial overlap', () => {
+    test('returns false', () => {
+      expect(properSubset(new Set([1, 2, 3]), new Set([2, 3, 4]))).toBe(false);
     });
   });
 });

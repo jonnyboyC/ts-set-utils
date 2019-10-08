@@ -1,24 +1,4 @@
 /**
- * Take the union of set a and b
- * @param a first set
- * @param b second set
- * @returns union of set a and b
- */
-export function unionPair<T1, T2>(a: Set<T1>, b: Set<T2>): Set<T1 | T2> {
-  const union = new Set<T1 | T2>();
-
-  for (const item of a) {
-    union.add(item);
-  }
-
-  for (const item of b) {
-    union.add(item);
-  }
-
-  return union;
-}
-
-/**
  * Take the union of a collection of sets
  * @param sets a collection of sets to union
  * @returns union of a collection of sets
@@ -39,6 +19,26 @@ export function union<T>(...sets: Set<T>[]): Set<T> {
 
       return union;
   }
+}
+
+/**
+ * Take the union of set a and b
+ * @param a first set
+ * @param b second set
+ * @returns union of set a and b
+ */
+export function unionPair<T1, T2>(a: Set<T1>, b: Set<T2>): Set<T1 | T2> {
+  const union = new Set<T1 | T2>();
+
+  for (const item of a) {
+    union.add(item);
+  }
+
+  for (const item of b) {
+    union.add(item);
+  }
+
+  return union;
 }
 
 /**
@@ -75,19 +75,49 @@ export function intersection<T>(...sets: Set<T>[]): Set<T> {
 }
 
 /**
- * Does set a intersect set b
+ * Are sets a and b disjoint from each other
  * @param a set a
  * @param b set b
- * @return true if the sets intersect
+ * @return true if the sets are disjoint
  */
-export function intersect<T>(a: Set<T>, b: Set<T>): boolean {
+export function disjoint<T>(a: Set<T>, b: Set<T>): boolean {
   for (const item of b) {
     if (a.has(item)) {
-      return true;
+      return false;
     }
   }
 
-  return false;
+  return true;
+}
+
+/**
+ * Is set b a subset of set a
+ * @param a set a
+ * @param b set b
+ * @return is b a subset of a
+ */
+export function subset<T>(a: Set<T>, b: Set<T>): boolean {
+  for (const item of b) {
+    if (!a.has(item)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * Is set b a proper subset of set a
+ * @param a set a
+ * @param b set b
+ * @return is b a subset of a
+ */
+export function properSubset<T>(a: Set<T>, b: Set<T>): boolean {
+  if (a.size <= b.size) {
+    return false;
+  }
+
+  return subset(a, b);
 }
 
 /**

@@ -1,8 +1,8 @@
 # ts-set-utils
 
-This library provides a small set of utility functions to Typescript / Javascript `Set` class. The ES6 `Set` has a relatively small api surface and this library fill some comment needs. Python built in set object as used as a guide for some comment method that be used on sets
+This library provides a small set of utility functions to Typescript's and Javascript's `Set` class. The ES6 `Set` has a relatively small api surface and this library fill some common set uses. Python built-in `set` object as used as a guide for some common methods that can be used on sets
 
-# Api
+# API
 
 ## Union
 
@@ -53,7 +53,7 @@ console.log(union(set1, set2));
 function intersection<T> (...sets: Set<T>[]): Set<T>;
 ```
 
-Performs a intersection on all sets provided. A union finds comment elements between two or more sets. Read more on [wikipedia](https://en.wikipedia.org/wiki/Intersection_(set_theory))
+Performs a intersection on all sets provided. A intersection finds common elements between two or more sets. Read more on [wikipedia](https://en.wikipedia.org/wiki/Intersection_(set_theory))
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/9/99/Venn0001.svg "Set Intersection")
 
@@ -90,6 +90,56 @@ console.log(disjoint(set2, set3))
 // true
 ```
 
+## Subset
+
+### Signature `B ⊆ A`
+``` Typescript
+function subset<T> (a: Set<T>, b: Set<T>): boolean;
+```
+
+Determine if set `B` is a subset of set `A`. A set `B` is a subset of `A` if all elements of `B` are present in set `A`. Read more on [wikipedia](https://en.wikipedia.org/wiki/Subset)
+
+![alt text](https://upload.wikimedia.org/wikipedia/commons/b/b0/Venn_A_subset_B.svg "Relative Complement")
+
+### Example
+
+``` Typescript
+const set1 = new Set([1, 2, 3])
+const set2 = new Set([3, 4, 5])
+const set3 = new Set([1, 2])
+
+console.log(subset(set1, set2));
+// false
+
+console.log(subset(set1, set3));
+// true
+
+console.log(subset(set3, set1));
+// false
+```
+
+## Proper Subset
+
+### Signature `B ⊂ A`
+``` Typescript
+function properSubset<T> (a: Set<T>, b: Set<T>): boolean;
+```
+
+Determine if set `B` is a proper subset of set `A`. A set `B` is a proper subset of `A` if all elements of `B` are present in set `A` and `A` is a large set. Read more on [wikipedia](https://en.wikipedia.org/wiki/Subset)
+
+### Example
+
+``` Typescript
+const set1 = new Set([1, 2, 3])
+const set2 = new Set([1, 2])
+
+console.log(properSubset(set1, set1));
+// false
+
+console.log(subset(set1, set2));
+// true
+```
+
 ## Difference
 
 ### Signature `A \ B`
@@ -97,7 +147,7 @@ console.log(disjoint(set2, set3))
 function difference<T> (a: Set<T>, b: Set<T>): Set<T>;
 ```
 
-Calculate the set difference between set a and b. A set difference calculates a base set `A` with a set `B` removed. More formally this would be called the relative complement. Read more on [wikipedia](https://en.wikipedia.org/wiki/Complement_(set_theory)#Relative_complement)
+Calculate the set difference between set `A` and `B`. A set difference calculates a base set `A` with a set `B` removed. More formally this would be called the relative complement. Read more on [wikipedia](https://en.wikipedia.org/wiki/Complement_(set_theory)#Relative_complement)
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/5/5a/Venn0010.svg "Relative Complement")
 
