@@ -1,23 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Take the union of set a and b
- * @param a first set
- * @param b second set
- * @returns union of set a and b
- */
-function unionPair(a, b) {
-    const union = new Set();
-    for (const item of a) {
-        union.add(item);
-    }
-    for (const item of b) {
-        union.add(item);
-    }
-    return union;
-}
-exports.unionPair = unionPair;
-/**
  * Take the union of a collection of sets
  * @param sets a collection of sets to union
  * @returns union of a collection of sets
@@ -39,6 +22,23 @@ function union(...sets) {
     }
 }
 exports.union = union;
+/**
+ * Take the union of set a and b
+ * @param a first set
+ * @param b second set
+ * @returns union of set a and b
+ */
+function unionPair(a, b) {
+    const union = new Set();
+    for (const item of a) {
+        union.add(item);
+    }
+    for (const item of b) {
+        union.add(item);
+    }
+    return union;
+}
+exports.unionPair = unionPair;
 /**
  * Take the set intersection of set a and set b
  * @param a set a
@@ -71,20 +71,48 @@ function intersection(...sets) {
 }
 exports.intersection = intersection;
 /**
- * Does set a intersect set b
+ * Are sets a and b disjoint from each other
  * @param a set a
  * @param b set b
- * @return true if the sets intersect
+ * @return true if the sets are disjoint
  */
-function intersect(a, b) {
+function disjoint(a, b) {
     for (const item of b) {
         if (a.has(item)) {
-            return true;
+            return false;
         }
     }
-    return false;
+    return true;
 }
-exports.intersect = intersect;
+exports.disjoint = disjoint;
+/**
+ * Is set b a subset of set a
+ * @param a set a
+ * @param b set b
+ * @return is b a subset of a
+ */
+function subset(a, b) {
+    for (const item of b) {
+        if (!a.has(item)) {
+            return false;
+        }
+    }
+    return true;
+}
+exports.subset = subset;
+/**
+ * Is set b a proper subset of set a
+ * @param a set a
+ * @param b set b
+ * @return is b a subset of a
+ */
+function properSubset(a, b) {
+    if (a.size <= b.size) {
+        return false;
+    }
+    return subset(a, b);
+}
+exports.properSubset = properSubset;
 /**
  * Take the set difference between set a and b
  * @param a a base set

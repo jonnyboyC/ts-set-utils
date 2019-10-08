@@ -1,16 +1,16 @@
 /**
+ * Take the union of a collection of sets
+ * @param sets a collection of sets to union
+ * @returns union of a collection of sets
+ */
+export declare function union<T>(...sets: Set<T>[]): Set<T>;
+/**
  * Take the union of set a and b
  * @param a first set
  * @param b second set
  * @returns union of set a and b
  */
 export declare function unionPair<T1, T2>(a: Set<T1>, b: Set<T2>): Set<T1 | T2>;
-/**
- * Take the union of a collection of sets
- * @param sets a collection of sets to union
- * @returns union of a collection of sets
- */
-export declare function union<T>(...sets: Set<T>[]): Set<T>;
 /**
  * Take the set intersection of set a and set b
  * @param a set a
@@ -19,12 +19,26 @@ export declare function union<T>(...sets: Set<T>[]): Set<T>;
  */
 export declare function intersection<T>(...sets: Set<T>[]): Set<T>;
 /**
- * Does set a intersect set b
+ * Are sets a and b disjoint from each other
  * @param a set a
  * @param b set b
- * @return true if the sets intersect
+ * @return true if the sets are disjoint
  */
-export declare function intersect<T>(a: Set<T>, b: Set<T>): boolean;
+export declare function disjoint<T>(a: Set<T>, b: Set<T>): boolean;
+/**
+ * Is set b a subset of set a
+ * @param a set a
+ * @param b set b
+ * @return is b a subset of a
+ */
+export declare function subset<T>(a: Set<T>, b: Set<T>): boolean;
+/**
+ * Is set b a proper subset of set a
+ * @param a set a
+ * @param b set b
+ * @return is b a subset of a
+ */
+export declare function properSubset<T>(a: Set<T>, b: Set<T>): boolean;
 /**
  * Take the set difference between set a and b
  * @param a a base set
