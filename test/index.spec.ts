@@ -7,6 +7,7 @@ import {
   symmetricDifference,
   subset,
   properSubset,
+  setEqual,
 } from '../src/index';
 
 type numberObject = {
@@ -475,6 +476,39 @@ describe('when checking a set is a subset of another', () => {
   describe('when b is a equal', () => {
     test('returns true', () => {
       expect(subset(new Set([1, 2, 3]), new Set([1, 2, 3]))).toBe(true);
+    });
+  });
+
+  describe('when b partial overlap', () => {
+    test('returns false', () => {
+      expect(subset(new Set([1, 2, 3]), new Set([2, 3, 4]))).toBe(false);
+    });
+  });
+});
+
+describe('when checking a set equal of another', () => {
+  describe('when sets are disjoint', () => {
+    test('returns false', () => {
+      const set = new Set([1, 2, 3]);
+      expect(setEqual(new Set([4, 5]), set)).toBe(false);
+    });
+  });
+
+  describe('when both sets are empty', () => {
+    test('returns true', () => {
+      expect(setEqual(new Set(), new Set())).toBe(true);
+    });
+  });
+
+  describe('when b is a strict subset', () => {
+    test('returns false', () => {
+      expect(setEqual(new Set([1, 2, 3]), new Set([1, 2]))).toBe(false);
+    });
+  });
+
+  describe('when b is a equal', () => {
+    test('returns true', () => {
+      expect(setEqual(new Set([1, 2, 3]), new Set([1, 2, 3]))).toBe(true);
     });
   });
 

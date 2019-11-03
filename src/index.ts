@@ -107,6 +107,20 @@ export function subset<T>(a: Set<T>, b: Set<T>): boolean {
 }
 
 /**
+ * Does set a and b contain the same elements
+ * @param a set a
+ * @param b set b
+ * @returns is a value equal to b
+ */
+export function setEqual<T>(a: Set<T>, b: Set<T>): boolean {
+  if (a.size != b.size) {
+    return false;
+  }
+
+  return subset(a, b);
+}
+
+/**
  * Is set b a proper subset of set a
  * @param a set a
  * @param b set b

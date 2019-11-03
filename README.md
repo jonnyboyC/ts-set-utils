@@ -1,6 +1,6 @@
 # ts-set-utils
 
-This library provides a small set of utility functions to Typescript's and Javascript's `Set` class. The ES6 `Set` has a relatively small api surface and this library fills some common set use cases. Python built-in `set` class is used as a api template.
+This library provides a small set of utility functions to Typescript's and Javascript's `Set` class. The ES6 `Set` has a relatively small api surface and this library fills some common set use cases. Python built-in `set` class is used as a api template. Find the [package here](https://www.npmjs.com/package/ts-set-utils)
 
 # API
 
@@ -116,6 +116,28 @@ console.log(subset(set1, set3));
 
 console.log(subset(set3, set1));
 // false
+```
+
+## Set Equal
+
+### Signature `B = A or B ⊆ A && B ⊇ A`
+Determine if set `B` is equal to set `A`. From the wikipedia definition "Set `A` and `B` are equal if and only if they have precisely the same element". Read more on [wikipedia](https://en.wikipedia.org/wiki/Set_(mathematics)#Definition)
+
+### Example
+
+``` Typescript
+const set1 = new Set([1, 2, 3])
+const set2 = new Set([3, 4, 5])
+const set3 = new Set([1, 2])
+
+console.log(setEqual(set1, set2));
+// false
+
+console.log(setEqual(set2, set3));
+// false
+
+console.log(setEqual(set1, set1));
+// true
 ```
 
 ## Proper Subset
