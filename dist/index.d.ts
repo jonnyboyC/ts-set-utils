@@ -33,6 +33,13 @@ export declare function disjoint<T>(a: Set<T>, b: Set<T>): boolean;
  */
 export declare function subset<T>(a: Set<T>, b: Set<T>): boolean;
 /**
+ * Does set a and b contain the same elements
+ * @param a set a
+ * @param b set b
+ * @returns is a value equal to b
+ */
+export declare function setEqual<T>(a: Set<T>, b: Set<T>): boolean;
+/**
  * Is set b a proper subset of set a
  * @param a set a
  * @param b set b
