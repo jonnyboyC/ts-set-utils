@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.symmetricDifference = exports.difference = exports.properSubset = exports.setEqual = exports.subset = exports.disjoint = exports.intersection = exports.unionPair = exports.union = void 0;
 /**
  * Take the union of a collection of sets
  * @param sets a collection of sets to union
@@ -100,6 +101,19 @@ function subset(a, b) {
     return true;
 }
 exports.subset = subset;
+/**
+ * Does set a and b contain the same elements
+ * @param a set a
+ * @param b set b
+ * @returns is a value equal to b
+ */
+function setEqual(a, b) {
+    if (a.size != b.size) {
+        return false;
+    }
+    return subset(a, b);
+}
+exports.setEqual = setEqual;
 /**
  * Is set b a proper subset of set a
  * @param a set a
